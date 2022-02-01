@@ -1,0 +1,20 @@
+<!--
+Author : Weishan Xu
+Date: 26 Jan 2022
+About: Part II – D3 Setup
+ Add to the ‘chain syntax’ version, also sets the ‘color’ of the text to green. 
+-->
+
+<title>exe 5</title>
+<script src='https://d3js.org/d3.v7.min.js'></script>
+
+<script>
+  var bodyElement = d3.select("body"); 
+var div = bodyElement.append("div"); 
+div.text("Hello World!"); 
+ 
+// same as 
+ 
+d3.select("body").append("div").text("Hello World!").style("color","green"); 
+//chaining method - each function returns the element selected
+</script>

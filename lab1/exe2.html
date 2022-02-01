@@ -1,0 +1,33 @@
+<!--
+Author : Weishan Xu
+Date: 26 Jan 2022
+About: Part II – D3 Setup
+Demonstrates selecting objects (‘select’) and either adding to them or manipulating their attributes. 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<title>exe 3</title>
+  <script src='https://d3js.org/d3.v7.min.js'></script>
+</head>
+
+<body>
+
+  <script>
+  for(let i = 0; i < 10; i++){
+    let divNew = d3.select("body").append("div")
+    divNew.text("The number is" + "          " +i)
+    if (i<5){
+      divNew.style('color','red')
+    }else{
+      divNew.style('color','green')
+    }
+  }
+
+  </script>
+</body>
+
+</html>

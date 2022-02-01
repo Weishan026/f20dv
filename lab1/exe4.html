@@ -1,0 +1,32 @@
+<!--
+Author : Weishan Xu
+Date: 26 Jan 2022
+About: Part II – D3 Setup
+‘selecting’ and modifying your ‘div’ elements, also change its color to ‘purple’.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<title>exe 4</title>
+  <script src='https://d3js.org/d3.v7.min.js'></script>
+</head>
+
+<body>
+
+  <script>
+  for(let i = 0; i < 10; i++){
+    let divNew = d3.select("body").append("div")
+    divNew.text(i)
+    if (i<1){
+      divNew.text("0 is the start")
+      divNew.style('color','purple')
+    }else{
+      divNew.style('color','green')
+    }
+  }
+  </script>
+</body>
+</html>
