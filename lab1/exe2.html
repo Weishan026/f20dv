@@ -2,32 +2,22 @@
 Author : Weishan Xu
 Date: 26 Jan 2022
 About: Part II – D3 Setup
-Demonstrates selecting objects (‘select’) and either adding to them or manipulating their attributes. 
+Initialize D3.js (using v7) and check it’s loaded
 -->
 
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> 
+<html lang="en"> 
+<title>exe 2</title>
 
-<head>
+<script src='https://d3js.org/d3.v7.min.js'></script>
+<p class="test">First paragraph</p>
+<p class="test">Second paragraph</p>
 
-<title>exe 3</title>
-  <script src='https://d3js.org/d3.v7.min.js'></script>
-</head>
+<script>
+  d3.selectAll("p").style("color", "green");
+  d3.selectAll("p").style("font-size","50px");
+  d3.selectAll("p").style("font-family","times");
+  d3.selectAll("p").style("text-align","center")
 
-<body>
-
-  <script>
-  for(let i = 0; i < 10; i++){
-    let divNew = d3.select("body").append("div")
-    divNew.text("The number is" + "          " +i)
-    if (i<5){
-      divNew.style('color','red')
-    }else{
-      divNew.style('color','green')
-    }
-  }
-
-  </script>
-</body>
-
+</script>
 </html>

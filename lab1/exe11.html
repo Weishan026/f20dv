@@ -1,0 +1,51 @@
+<!--
+Author: Weishan Xu
+Date: 27 Jan 2022
+About: Part VI - SVG 
+draw a ‘square shape’ (4 lines) – each side of the square a 
+different color.
+  -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<title>exe 11</title>
+
+<script src='https://d3js.org/d3.v7.min.js'></script>
+
+<script>
+  //Create SVG element 
+    var svg = d3.select("body") 
+    .append("svg") 
+    .attr("width",  400) 
+    .attr("height", 400) 
+    .style("border", '1px solid green'); 
+ 
+    //Create line element inside SVG 
+    svg.append("line") 
+       .attr("x1", 100) 
+       .attr("x2", 300) 
+       .attr("y1", 50) 
+       .attr("y2", 50) 
+       .attr("stroke", "blue") 
+    svg.append("line")//draw the bottom edge
+    .attr("x1", 100) 
+    .attr("x2", 300)
+    .attr("y1", 250)
+    .attr("y2", 250)//change y axis coordinates - same width as offside margin
+    .attr("stroke", "red")
+  svg.append("line")//draw the left edge
+  .attr("x1", 100)
+  .attr("x2", 100)
+  .attr("y1", 50)
+  .attr("y2", 250)
+  .attr("stroke", "green")
+  svg.append("line")//draw the right edge
+  .attr("x1", 300)
+  .attr("x2",300)
+  .attr("y1", 50)
+  .attr("y2", 250)
+  .attr("stroke", "yellow")
+
+</script>
+</html>
