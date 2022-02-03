@@ -10,7 +10,11 @@ it as green’ (note you’ll need to ‘chain’ a ‘.style’ method after yo
 <html lang="en">
 
 <title>exe 8 </title>
+<head>
 <script src='https://d3js.org/d3.v7.min.js'></script>
+</head>
+
+<body>
 <script>
   var myData = ['a', 1, 'b', 6, 2, 8, 9, 'z'];
       
@@ -23,13 +27,18 @@ var span = d3.select("body")
                      return d; 
             })
     .style('color', function(d) {
-    if (d % 1 == 0 ) {
+    if (d % 1 == 0 ) 
+    {
     return "green";
-    } else {
+    } 
+    else 
+    {
     return "blue";
     }
-    });
+
+  });
 
 </script>
+</body>
 </html>
 

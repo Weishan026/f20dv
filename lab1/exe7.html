@@ -9,9 +9,11 @@ Change the bounds check so the color is red for numbers between 50 and 100.
 <html lang="en">
 
 
+    <script src='https://d3js.org/d3.v7.min.js'></script>
+
 <title>exe 7</title>
 
-<script src='https://d3js.org/d3.v7.min.js'></script>
+<body>
 <script>
   let num = [10, 50, 100, 200]; 
  
@@ -25,10 +27,14 @@ let paragraph = d3.select("body")
                     if (d >= 50 && d <= 100) { 
                         return "red"; 
                     } 
-                    else { 
+                    else 
+                    { 
                         return "yellow"; 
-                }）; 
+                    }
+                        return "blue";
+                });
  
 </script>
+</body>
 </html>
 

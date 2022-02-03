@@ -11,6 +11,7 @@ value out in the ‘text’ method.
 
 <title>exe 6</title>
 
+<body>
 <script src='https://d3js.org/d3.v7.min.js'></script> 
  
 <div></div> 
@@ -18,21 +19,24 @@ value out in the ‘text’ method.
 <div></div> 
  
 <script> 
-let otherdata = [ {name:'test',  val:1},  
-                  {name:'other', val:2}, 
-                  {name:'b',     val:3},
-                  {name:'color', val:4}]; 
+let otherdata = [ {name:'test',  val:1, col:'green'},  
+                  {name:'other', val:2, col:'green'}, 
+                  {name:'b',     val:3, col:'green'},
+                  {name: 'color',val:4, col:'green'}]; 
  
 let paragraph = d3.select("body") 
                 .selectAll("div") 
                 .data(otherdata) 
+                .style("color", d=>{return d.col})
                 .text(function (d, i) { 
                     console.log("d.name: " + d.name); 
                     console.log("d.val:  " + d.val); 
                     console.log("i: " + i); 
-                    console.log("this: " + this); 
- 
-                    return 'cont:' + d.name; // return value is used to set the 'text' 
+                    console.log("this: " + this);
+
+                    //print both cont and value
+                    return 'cont:' + d.name + "     " + 'value:' + d.val; // return value is used to set the 'text' 
                 }); 
 </script> 
+</body>
 </html>
