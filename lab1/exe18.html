@@ -1,0 +1,72 @@
+<!--
+Author: Weishan Xu
+Date: 01 Feb 2022
+About: Part IX - Scales, Domain, Range
+'bar chart' data is displayed from an external window
+  -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Exercise 18</title>
+</head>
+
+<body>
+    <script src='https://d3js.org/d3.v7.min.js'></script>
+    <script>
+    var data = [];
+    d3.csv("./ex18.csv", function(d) {
+            data.push(parseInt(d.data));//push() adds new items to the end of an array  
+    }).then(function(d){
+        console.log(data);
+        const width = 500;
+        const barHeight = 20;
+        const margin = 1;
+        console.log(d3.min(data));
+        //creates a scale with a linear relationship between input and output
+        var scale = d3.scaleLinear()
+        //Given a value from the domain, returns the corresponding value from the range
+            .domain([d3.min(data), d3.max(data)])
+            .range([50, 500]);
+
+        var svg = d3.select("body")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", barHeight * data.length);
+
+        var g = svg.selectAll("g")
+            .data(data)
+            .enter()
+            .append("g")
+            .attr("transform", function(d, i) {
+                return "translate(0," + i * barHeight + ")";
+            });
+
+        g.append("rect")
+            .attr("width", function(d) {
+                return scale(d);
+            })
+            .attr('fill', function(d) {
+                if (d < 100) {
+                    return "green";
+                } else if (d > 500) {
+                    return "red";
+                } else {
+                    return "blue";
+                }
+            })
+            .attr("height", barHeight - margin)
+
+        g.append("text")
+            .attr("x", function(d) { return (scale(d)); })
+            .attr("y", barHeight / 2)//position of text on the chart
+            .attr("dy", ".30em")
+            .style('text-anchor', 'end')
+            .text(function(d) { return d; });
+    })
+    </script>
+</body>
+
+</html>

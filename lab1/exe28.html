@@ -1,0 +1,67 @@
+<!--
+Author: Weishan Xu
+Date: 03 Feb 2022
+About: Part XIII - Colors
+take one d3 color method and apply it to the bar chart
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Exercise 28</title>
+</head>
+
+<body>
+    <script src='https://d3js.org/d3.v7.min.js'></script>
+    <script>
+    var data = [];
+    d3.csv("./ex18.csv", function(d) {
+            data.push(parseInt(d.data));//Convert the input string to an integer
+    }).then(function(d){
+        //give a range of color theme
+        var myColor0 = d3.scaleLinear().domain([d3.min(data),d3.max(data)]).range(["red", "blue"]); 
+        const width = 500;
+        const barHeight = 20;
+        const margin = 1;
+        console.log(d3.min(data));
+        //
+        var scale = d3.scaleLinear()
+            .domain([d3.min(data), d3.max(data)])
+            .range([50, 500]);
+
+        var svg = d3.select("body")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", barHeight * data.length);
+
+        var g = svg.selectAll("g")
+            .data(data)
+            .enter()
+            .append("g")
+            .attr("transform", function(d, i) {
+                return "translate(0," + i * barHeight + ")";
+            });
+
+        g.append("rect")
+            .attr("width", function(d) {
+                return scale(d);
+            })
+            .attr('fill', function(d) {
+                console.log(myColor0(d))
+                return myColor0(d);
+            })
+            .attr("height", barHeight - margin)
+
+        g.append("text")
+            .attr("x", function(d) { return (scale(d)); })
+            .attr("y", barHeight / 2)
+            .attr("dy", ".35em")
+            .style('text-anchor', 'end')
+            .text(function(d) { return d; });
+    })
+    </script>
+</body>
+
+</html>

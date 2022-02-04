@@ -1,10 +1,18 @@
+<!--
+Author: Weishan Xu
+Date: 01 Feb 2022
+About: Part V – Loading Data
+Count how many of the names include ‘Mr.’ and ‘Mrs’, also print 
+out other details using other column header information, such as, how many passengers are ‘male’ and how many 
+‘female’.
+-->
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Lab 1</title>
+    <title>Exercise 9</title>
 </head>
 <script src='https://d3js.org/d3.v7.min.js'></script>
 
@@ -23,15 +31,16 @@
     var female = 0;
     var male  = 0;  
     d3.csv(titaniccsv, function(data) {
+        //a substring to search for both Mr and Mrs
         if(data.Name.indexOf("Mr") >=0  || data.Name.indexOf("Mrs") >=0 ){
-            count += 1;
+            count += 1; //count = count + 1
         }
         if(data.Sex=="male"){
             male += 1;
         }else if(data.Sex=="female"){
             female += 1;
         }
-
+    //callback function
     }).then(function(){
         console.log("Number of names include 'Mr' and 'Mrs':", count);
         console.log("Number of females:", female);

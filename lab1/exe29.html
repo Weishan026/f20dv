@@ -1,0 +1,104 @@
+<!--
+Author: Weishan Xu
+Date: 03 Feb 2022
+About: Part X IV - Colors
+take one d3 color method and apply it to the line chart
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Exercise 29</title>
+</head>
+
+<body>
+    <script src='https://d3js.org/d3.v7.min.js'></script>
+    <script>
+    // Set Dimensions 
+    const xSize = 600;
+    const ySize = 600;
+    const margin = 40;
+    const xMax = xSize - margin * 2;
+    const yMax = ySize - margin * 2;
+
+    // Create Random Points 
+    const numPoints = 100;
+    const data = [];
+    for (let i = 0; i < numPoints; i++) { data.push({ x: i / 100, y: Math.sin(6.2 * i / 100) }); }
+    //domain go large, the less the colour gradient
+    var myColor0 = d3.scaleLinear().domain([-1, 1]).range(["red", "blue"]); 
+    function draw(data) {
+        // Get the 'limits' of the data - the full extent (mins and max) 
+        // so the plotted data fits perfectly  
+        const xExtent = d3.extent(data, d => { return d.x });
+        const yExtent = d3.extent(data, d => { return d.y });
+
+        // Append SVG Object to the Page 
+        const svg = d3.select("body")
+            .append("svg")
+            .attr('width', xSize)
+            .attr('height', ySize)
+            .append("g")
+            //transform function moves the object by x and y
+            //if y is not provided, it is assumed to be 0
+            .attr("transform", "translate(" + margin + "," + margin + ")");//callback, the surface margin
+
+        // X Axis 
+        const x = d3.scaleLinear()
+            .domain([xExtent[0], xExtent[1]])
+            .range([0, xMax]);
+
+        // bottom 
+        svg.append("g")//group element (combine)
+            .attr("transform", "translate(0," + yMax + ")")
+            .call(d3.axisBottom(x))
+            .attr('color', 'green'); // make bottom axis green 
+
+        // top 
+        svg.append("g")
+            .call(d3.axisTop(x));
+
+        // Y Axis 
+        const y = d3.scaleLinear()
+            .domain([yExtent[0], yExtent[1]])
+            .range([yMax, 0]);
+
+        // left y axis 
+        svg.append("g")
+            .call(d3.axisLeft(y));
+
+        // right y axis 
+        svg.append("g")
+            .attr("transform", `translate(${yMax},0)`)
+            .call(d3.axisRight(y));
+
+        // Add the line 
+        console.log(myColor0(d3.max(data)/2))
+        svg.append("path")
+            .datum(data)
+            .attr("fill", "none")
+            .attr("stroke", "steelblue")
+            .attr("stroke-width", 1.5)
+            .attr("d", d3.line()
+                .x(function(d) { return x(d.x) })
+                .y(function(d) { return y(d.y) })
+            );
+        svg.selectAll("dot")
+            .data(data)
+            .enter()
+            .append("circle")
+            .attr("cx", function(d) { return x(d.x) })
+            .attr("cy", function(d) { return y(d.y) })
+            .attr("r", 5)
+            .data(data)
+            .style("fill",function(d){
+                return myColor0(d.y);
+            });
+    }
+    draw(data);
+    </script>
+</body>
+
+</html>

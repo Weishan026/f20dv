@@ -1,3 +1,9 @@
+<!--
+Author : Weishan Xu
+Date: 01 Feb 2022
+About: Part V – Loading Data
+Display paragraphs for the total patients with heart failure between 1-30, 31-40, 41-60, 61-100.
+-->
 <!DOCTYPE html>
 <html>
 
@@ -19,8 +25,8 @@
     65,0,146,0,20,0,162000,1.3,129,1,1,7,1 
     50,1,111,0,20,0,210000,1.9,137,1,0,7,1 
     */
-    var ageGroups = [0,0,0,0];
-    var groupName = ["1-30", "31-40", "41-60", "61-100"]
+    var ageGroups = [0,0,0,0]
+    var groupName = ["1-30", "31-40", "41-60", "61-100"]//grouping ages
     d3.csv(heartfailurecsv, function(data) {
         //console.log( data.age); 
         if(data.age<=30){
@@ -37,9 +43,9 @@
                  .data(ageGroups)
                  .enter()
                  .append("p")
-                 .text( function(data, idx){ 
-                    console.log(idx)
-                    return "Age group " +  groupName[idx] + ": " + data; 
+                 .text( function(data, i){ 
+                    console.log(i)
+                    return "Age group  " +  groupName[i] + ": " + data; //returns the name in the console
                 } );
     });
     </script>

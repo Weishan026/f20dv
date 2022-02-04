@@ -1,3 +1,10 @@
+<!--
+Author: Weishan Xu
+Date: 01 Feb 2022
+About: Part VI - SVG 
+extend to include 'enter' and 'exit' concepts
+  -->
+
 <!DOCTYPE html>
 <html>
 
@@ -11,7 +18,7 @@
     <script src='https://d3js.org/d3.v7.min.js'></script>
     <script>
     //Create SVG element 
-    var svg = d3.select("body")
+    var svg = d3.select("body")//Think of SVG as a canvas to paint on
         .append("svg")
         .attr("width", 600)
         .attr("height", 600)
@@ -23,15 +30,16 @@
         .attr("y", 50)
         .attr("stroke", "#fff")
         .text("This is some text!");
-    d3.csv("ex12.csv", function(data){
+    d3.csv("./ex12.csv", function(data){
         svg.append('rect')
+        //parses a string argument and returns an integer of the specified radix or base
         .attr("x", parseInt(data.x))
         .attr("y", parseInt(data.y))
         .attr("width", parseInt(data.width))
         .attr("height", parseInt(data.height))
         .attr("fill", data.color)
-        .enter()
-        .exit();
+        .enter()//represents the elements that need to be created
+        .exit();//exit is the exit selection and contains elements that need to to be removed
     })
     </script>
 </body>

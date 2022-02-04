@@ -1,3 +1,9 @@
+<!--
+Author: Weishan Xu
+Date: 01 Feb 2022
+About: Part VII - Bar chart 
+Use more colors, values over a certain 
+  -->
 <!DOCTYPE html>
 <html>
 
@@ -34,6 +40,7 @@
     var groupName = ["1-30", "31-40", "41-60", "61-100"]
     d3.csv(heartfailurecsv, function(data) {
         //console.log( data.age); 
+        //use a loop to divide into 4 groups
         if (data.age <= 30) {
             ageGroups[0] += 1;
         } else if (data.age <= 40) {
@@ -45,8 +52,8 @@
         }
     }).then(function() {
         var width = 200;
-        var scaleFactor = 10;
-        var barHeight = 30;
+        var scaleFactor = 10;//
+        var barHeight = 30;//barchart values will change
         console.log(d3.max(ageGroups));
         console.log(d3.min(ageGroups));
 
@@ -68,7 +75,7 @@
                 return d;
             })
             .attr("height", barHeight - 1)
-            .style('fill', function(d){
+            .style('fill', function(d){ // differentiation by red and black
                 if(d>100){
                     return "red"
                 }else{
@@ -76,7 +83,7 @@
                 }
             });
 
-        bar.append("text")
+        bar.append("text")//modifying the text
             .attr("x", function(d) { 
                 console.log(d);
                 return (d +20); })

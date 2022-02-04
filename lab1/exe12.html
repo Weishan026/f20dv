@@ -1,37 +1,45 @@
-<!DOCTYPE html>
-<html>
+<!--
+Author: Weishan Xu
+Date: 01 Feb 2022
+About: Part VI - SVG 
+create a csv with the information about the shapes, which include columns in csv file for the type of shape (circle, rectangle, 
+ellipse, line), its dimensions and position, and color
+  -->
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Exercise 12</title>
-</head>
-
-<body>
-    <script src='https://d3js.org/d3.v7.min.js'></script>
-    <script>
-    //Create SVG element 
-    var svg = d3.select("body")
-        .append("svg")
-        .attr("width", 600)
-        .attr("height", 600)
-        .style("border", '1px solid green');
-
-    //Create and append text element into group 
-    svg.append("text")
-        .attr("x", 150)
-        .attr("y", 50)
-        .attr("stroke", "#fff")
-        .text("This is some text!");
-    d3.csv("ex12.csv", function(data){
-        svg.append('rect')
-        .attr("x", parseInt(data.x))
-        .attr("y", parseInt(data.y))
-        .attr("width", parseInt(data.width))
-        .attr("height", parseInt(data.height))
-        .attr("fill", data.color)
-    })
-    </script>
-</body>
-
-</html>
+  <!DOCTYPE html>
+  <html>
+  
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Exercise 12</title>
+  </head>
+  
+  <body>
+      <script src='https://d3js.org/d3.v7.min.js'></script>
+      <script>
+      //Create SVG element 
+      var svg = d3.select("body")
+          .append("svg")
+          .attr("width", 600)
+          .attr("height", 600)
+          .style("border", '1px solid green');
+  
+      //Create and append text element into group 
+      svg.append("text")
+          .attr("x", 150)
+          .attr("y", 50)
+          .attr("stroke", "#fff")
+          .text("This is some text!");
+      d3.csv("./ex12.csv", function(data){
+          svg.append('rect')
+          .attr("x", parseInt(data.x))
+          .attr("y", parseInt(data.y))
+          .attr("width", parseInt(data.width))
+          .attr("height", parseInt(data.height))
+          .attr("fill", data.color)
+      })
+      </script>
+  </body>
+  
+  </html>

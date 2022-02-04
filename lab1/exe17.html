@@ -1,0 +1,68 @@
+<!--
+Author: Weishan Xu
+Date: 01 Feb 2022
+About: Part IX - Scales, Domain, Range
+bars are green if below 100 and red if above 500
+  -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Exercise 17</title>
+</head>
+
+<body>
+    <script src='https://d3js.org/d3.v7.min.js'></script>
+    <script>
+    const data = [50, 400, 300, 900, 250, 1000]//constructor 
+
+    const width = 500;
+    const barHeight = 20;
+    const margin = 1;
+
+    var scale = d3.scaleLinear()
+    //Given a value from the domain, returns the corresponding value from the range
+        .domain([d3.min(data), d3.max(data)])
+        .range([50, 500]);
+
+    var svg = d3.select("body")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", barHeight * data.length);
+
+    var g = svg.selectAll("g")//group elements 
+        .data(data)//binds data array to the group elements
+        .enter()//creates placeholders for our group elements
+        .append("g")//appends group elements to our page
+        .attr("transform", function(d, i) {
+            //this gunction position one below the other, a horizontal bar chart is needed
+            return "translate(0," + i * barHeight + ")";
+        });
+
+    g.append("rect")
+        .attr("width", function(d) {
+            return scale(d);
+        })
+        .attr('fill', function(d){//fills each rect with a color from color array
+            if(d<100){
+                return "green";
+            }else if(d>500){
+                return "red";
+            }else{
+                return "blue";
+            }
+        })
+        .attr("height", barHeight - margin)
+
+    g.append("text")
+        .attr("x", function(d) { return (scale(d)); })
+        .attr("y", barHeight / 2)
+        .attr("dy", ".35em")//align the text vertically
+        .style('text-anchor', 'end')
+        .text(function(d) { return d; });
+    </script>
+</body>
+
+</html>

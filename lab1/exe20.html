@@ -1,0 +1,71 @@
+<!--
+Author: Weishan Xu
+Date: 01 Feb 2022
+About: Part X - Axis 
+an axis is drawn on all sides, make the top and right axis the color blue
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Exercise 20</title>
+</head>
+
+<body>
+    <script src='https://d3js.org/d3.v7.min.js'></script>
+    <script>
+    const width = 400;
+    const height = 300;
+
+    var data = [10, 15, 20, 25, 30];
+    var svg = d3.select("body")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height);
+
+    var xscale = d3.scaleLinear()
+        .domain([0, d3.max(data)])
+        .range([0, width - 100]);
+
+    var yscale = d3.scaleLinear()
+        .domain([0, d3.max(data)])
+        .range([height / 2, 0]);
+
+    var x_axis = d3.axisBottom()
+        .scale(xscale);
+
+    var x_top_axis = d3.axisTop()
+        .scale(xscale);
+
+
+    var y_axis = d3.axisLeft()
+        .scale(yscale);
+
+    var y_right_axis = d3.axisRight()
+        .scale(yscale);
+
+    svg.append("g")
+        .attr("transform", "translate(50, 10)")
+        .call(y_axis);
+
+    svg.append("g")
+        .attr("transform", "translate(350, 10)")//set the position of y scale
+        .call(y_right_axis)
+        .attr("stroke", "blue");//stroke() on canvas is used to draw the path
+
+    var xAxisTranslate = height / 2 + 10;
+
+    svg.append("g")
+        .attr("transform", "translate(50, " + xAxisTranslate + ")")
+        .call(x_axis);
+
+    svg.append("g")
+        .attr("transform", "translate(50, 20)")//set the position of x scale
+        .call(x_top_axis)
+        .attr("stroke", "blue");
+    </script>
+</body>
+
+</html>
