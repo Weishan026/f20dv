@@ -2,7 +2,10 @@
 Author: Weishan Xu
 Date: 01 Feb 2022
 About: Part XI - Line chart
-load data from csv and plot the line
+Goal: Load data from csv and plot the line
+Use const functions to set the dimensions firstly,
+then draw function is used by constructing the min and max values of x and y, so the plotted data fits perfectly
+input all data and transfer them into float variables at the end.
 -->
 <!DOCTYPE html>
 <html>
@@ -79,7 +82,7 @@ load data from csv and plot the line
     }
     data = []
     d3.csv("./ex23.csv", function(d){
-        data.push({"x":parseFloat(d.x), "y":parseFloat(d.y)})
+        data.push({"x":parseFloat(d.x), "y":parseFloat(d.y)})//transfer to float values
     }).then(function(){
         draw(data)
     });

@@ -2,7 +2,8 @@
 Author: Weishan Xu
 Date: 01 Feb 2022
 About: Part XI - Line chart
-draw sinewave
+Goal: Draw sinewave
+Call() method is used to invoke a method with an owner object as an argument (parameter)
 -->
 <!DOCTYPE html>
 <html>
@@ -57,7 +58,7 @@ draw sinewave
         // top 
         svg.append("g")
             .call(d3.axisTop(x));//The call() method is a predefined method
-            //It can be used to invoke a method with an owner object as an argument (parameter)
+            
 
         // Y Axis 
         const y = d3.scaleLinear()
