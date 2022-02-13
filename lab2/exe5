@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<head>
+	<title>Exercise 5</title>
+	<script type='text/javascript' src='https://d3js.org/d3.v7.min.js'></script>
+</head>
+
+<body>
+	<script>
+		//Create SVG element first
+var svg = d3.select("body")
+.append("svg")
+.attr("width", 400)
+.attr("height", 400)
+.style("border", "1px solid black");
+
+svg.append("text"); // Create a 'text' svg element.
+svg.on('mousemove', function () {
+  //use 'd3.pointer' method
+  let p = d3.pointer(event)
+     d3.select('text').attr('x', p[0]) //get x
+      .attr('y', p[1]) //get y
+      .text('This is a text!') // Set the text here.
+       console.log(p) // The position of my cursor in the SVG.
+    });
+
+   
+   console.log(d3.pointer); 
+	</script>
+</body>
+
+</html>
